@@ -16,6 +16,7 @@ body:
         - Docs
         - Question
         - Idea
+        - Todo
     validations:
       required: true
 
@@ -24,32 +25,35 @@ body:
     attributes:
       label: Short Summary
       description: Briefly describe the main point of the issue.
-      placeholder: e.g. Fix input validation in Exercise 4
+      placeholder: "e.g. Fix input validation in Exercise 4"
 
   - type: textarea
     id: description
     attributes:
       label: Description
       description: Explain what this issue is about.
-      placeholder: Add details, background, or context here.
+      placeholder: "Add details, background, or context here."
 
   - type: textarea
     id: steps
     attributes:
       label: Steps to Reproduce (for bugs)
       description: List the steps if this is a bug. Otherwise, leave empty.
-      placeholder: 1. Run the program\n2. Enter invalid input\n3. Observe crash
+      placeholder: |
+        1. Run the program  
+        2. Enter invalid input  
+        3. Observe crash
 
   - type: textarea
     id: expected
     attributes:
       label: Expected Behavior or Goal
       description: What should happen or what are you trying to achieve?
-      placeholder: The program should handle invalid input gracefully.
+      placeholder: "The program should handle invalid input gracefully."
 
   - type: textarea
     id: notes
     attributes:
       label: Notes or Ideas
       description: Any additional info, ideas, or next steps.
-      placeholder: Possible fix: add input validation before parsing.
+      placeholder: "Possible fix: add input validation before parsing."
