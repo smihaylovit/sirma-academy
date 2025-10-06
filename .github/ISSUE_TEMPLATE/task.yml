@@ -1,0 +1,55 @@
+name: General Task
+description: Use this template for bugs, features, questions, or documentation tasks.
+title: "[Type] Short descriptive title"
+labels:
+  - task
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Issue Type
+      description: Select what kind of issue this is.
+      options:
+        - Bug
+        - Feature
+        - Task
+        - Docs
+        - Question
+        - Idea
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Short Summary
+      description: Briefly describe the main point of the issue.
+      placeholder: e.g. Fix input validation in Exercise 4
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Explain what this issue is about.
+      placeholder: Add details, background, or context here.
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce (for bugs)
+      description: List the steps if this is a bug. Otherwise, leave empty.
+      placeholder: 1. Run the program\n2. Enter invalid input\n3. Observe crash
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior or Goal
+      description: What should happen or what are you trying to achieve?
+      placeholder: The program should handle invalid input gracefully.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes or Ideas
+      description: Any additional info, ideas, or next steps.
+      placeholder: Possible fix: add input validation before parsing.
