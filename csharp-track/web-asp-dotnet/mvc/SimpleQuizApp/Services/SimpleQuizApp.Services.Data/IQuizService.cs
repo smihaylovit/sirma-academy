@@ -6,6 +6,5 @@ namespace SimpleQuizApp.Services.Data
     {
         IEnumerable<Quiz> GetAll();
         Quiz? GetById(string id);
-        void Update(Quiz quiz);
     }
 }

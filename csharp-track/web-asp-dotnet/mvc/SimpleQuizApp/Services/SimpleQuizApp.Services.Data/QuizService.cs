@@ -16,7 +16,7 @@ namespace SimpleQuizApp.Services.Data
                     new Question
                     {
                         Text = "Which annotation is used to define a controller in Spring MVC?",
-                        Points = 5,
+                        Points = 1,
                         Options =
                         {
                             { "@Component", false },
@@ -28,7 +28,7 @@ namespace SimpleQuizApp.Services.Data
                     new Question
                     {
                         Text = "Which method in a controller returns a View in ASP.NET Core MVC?",
-                        Points = 5,
+                        Points = 1,
                         Options =
                         {
                             { "Display()", false },
@@ -40,7 +40,7 @@ namespace SimpleQuizApp.Services.Data
                     new Question
                     {
                         Text = "Which method is used to define a GET route in Express?",
-                        Points = 5,
+                        Points = 1,
                         Options =
                         {
                             { "app.route()", false },
@@ -52,7 +52,7 @@ namespace SimpleQuizApp.Services.Data
                     new Question
                     {
                         Text = "In MVC architecture, what does the 'C' stand for?",
-                        Points = 5,
+                        Points = 1,
                         Options =
                         {
                             { "Code", false },
@@ -64,7 +64,7 @@ namespace SimpleQuizApp.Services.Data
                     new Question
                     {
                         Text = "Which part of MVC is responsible for handling user input?",
-                        Points = 5,
+                        Points = 1,
                         Options =
                         {
                             { "Model", false },
@@ -85,12 +85,6 @@ namespace SimpleQuizApp.Services.Data
         public Quiz? GetById(string id)
         {
             return Quizzes.SingleOrDefault(q => q.Id == id);
-        }
-
-        public void Update(Quiz quiz)
-        {
-            var oldQuiz = Quizzes.SingleOrDefault(q => q.Id == quiz.Id);
-            oldQuiz = quiz;
         }
     }
 }

@@ -7,17 +7,17 @@ namespace SimpleQuizApp.Web.Controllers
 {
     public class QuizController : Controller
     {
-        private readonly IQuizService QuizService;
+        private readonly IQuizService _quizService;
 
         public QuizController(IQuizService quizzesService)
         {
-            QuizService = quizzesService;
+            _quizService = quizzesService;
         }
 
         [HttpGet]
         public IActionResult List()
         {
-            var quizzes = QuizService.GetAll();
+            var quizzes = _quizService.GetAll();
             var viewModel = new QuizListViewModel
             {
                 Quizzes = quizzes.Select(q => new QuizListItemViewModel
@@ -33,9 +33,9 @@ namespace SimpleQuizApp.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(string id, bool isRetake = false)
+        public IActionResult Details(string id, bool isRetake = false, bool isEvaluate = false)
         {
-            var quiz = QuizService.GetById(id);
+            var quiz = _quizService.GetById(id);
 
             if (quiz == null)
             {
@@ -59,7 +59,8 @@ namespace SimpleQuizApp.Web.Controllers
                     Options = q.Options.ToDictionary(x => x.Key, x => x.Value),
                     SelectedOption = q.SelectedOption,
                 }).ToList(),
-                IsRetake = isRetake
+                IsRetake = isRetake,
+                IsEvaluate = isEvaluate,
             };
 
             return View(viewModel);
@@ -68,24 +69,29 @@ namespace SimpleQuizApp.Web.Controllers
         [HttpPost]
         public IActionResult Submit(string id, QuizDetailsViewModel model)
         {
-            var quiz = QuizService.GetById(id);
+            var quiz = _quizService.GetById(id);
 
             if (quiz == null)
             {
                 return NotFound();
             }
 
-            //foreach (var question in quiz.Questions)
-            //{
-            //    if (answers.TryGetValue(question.Id, out var selectedOption))
-            //    {
-            //        question.SelectedOption = selectedOption;
-            //    }
-            //}
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Details", new { id = quiz.Id, isRetake = true });
+            }
 
-            QuizService.Update(quiz);
+            foreach (var qvm in model.Questions)
+            {
+                var q = quiz.Questions.FirstOrDefault(x => x.Id == qvm.Id);
+                
+                if (q != null)
+                {
+                    q.SelectedOption = qvm.SelectedOption;
+                }
+            }
 
-            return RedirectToAction("Details", new { id = quiz.Id });
+            return RedirectToAction("Details", new { id = quiz.Id, isRetake = false, isEvaluate = true });
         }
     }
 }
