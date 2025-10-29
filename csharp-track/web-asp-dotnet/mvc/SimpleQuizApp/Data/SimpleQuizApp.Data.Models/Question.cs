@@ -12,5 +12,6 @@
         public required string Text { get; set; }
         public int Points { get; set; }
         public IDictionary<string, bool> Options { get; private set; }
+        public string? SelectedOption { get; set; }
     }
 }

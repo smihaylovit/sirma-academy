@@ -2,12 +2,10 @@
 
 namespace SimpleQuizApp.Services.Data
 {
-    public interface IQuizzesService
+    public interface IQuizService
     {
         IEnumerable<Quiz> GetAll();
         Quiz? GetById(string id);
-        //void Create(Quiz quiz);
-        //void Update(Quiz quiz);
-        //void Delete(string id);
+        void Update(Quiz quiz);
     }
 }

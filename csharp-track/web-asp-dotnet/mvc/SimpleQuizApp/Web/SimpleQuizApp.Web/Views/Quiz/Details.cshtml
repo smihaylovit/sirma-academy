@@ -1,0 +1,71 @@
+﻿@using SimpleQuizApp.Web.ViewModels.Quizzes
+@model QuizDetailsViewModel
+
+@{
+	ViewData["Title"] = "Quiz Details";
+}
+
+<h1>Quiz Details</h1>
+
+<div>
+	<h4>@Model.QuizData.Title</h4>
+	<hr />
+	<dl class="row">
+	</dl>
+</div>
+<div>
+	<a asp-action="List">Back to List</a> |
+	@Html.ActionLink("Retake Quiz", "Details", new { id = Model.QuizData.Id, isRetake = true }) |
+	<form asp-action="Submit" asp-controller="Quiz" asp-route-id="@Model.QuizData.Id" method="post">
+		@if (Model.IsRetake)
+		{
+			@Html.HiddenFor(m => m.QuizData.Id)
+			@Html.HiddenFor(m => m.QuizData.Title)
+			@Html.HiddenFor(m => m.QuizData.Description)
+			@Html.HiddenFor(m => m.QuizData.TimeLimit)
+			@Html.HiddenFor(m => m.IsRetake)
+			<button type="submit" class="btn btn-sm btn-primary">Submit</button>
+		}
+		<ol>
+			@for (int i = 0; i < Model.Questions.Count; i++)
+			{
+				var question = Model.Questions[i];
+				@Html.HiddenFor(m => m.Questions[i].Id)
+				@Html.HiddenFor(m => m.Questions[i].Text)
+				@Html.HiddenFor(m => m.Questions[i].Points)
+				@Html.HiddenFor(m => m.Questions[i].IsCorrect)
+				<li class="mb-3">
+					<div>
+						<strong>@question.Text</strong>
+						<span class="text-muted">(@question.Points pts)</span>
+					</div>
+					<ul style='list-style-type: none;'>
+						@for (int j = 0; j < question.Options.Count(); j++)
+						{
+							var option = question.Options.ElementAt(j);
+							var isChecked = Model.IsRetake ? false : question.SelectedOption == option.Key;
+							var isDisabled = !Model.IsRetake;
+							@Html.HiddenFor(m => m.Questions[i].Options[option.Key])
+							<li>
+								@Html.RadioButtonFor(
+									m => m.Questions[i].SelectedOption,
+									option.Key,
+									htmlAttributes: isDisabled ? new { @disabled = "disabled" } : null
+								)
+								<span class="ms-2">@option.Key</span>
+								@if (option.Value)
+								{
+									<span class="badge bg-success ms-2">Correct</span>
+								}
+								@if (!string.IsNullOrEmpty(question.SelectedOption) && question.SelectedOption == option.Key)
+								{
+									<span class="badge bg-primary ms-2">Selected</span>
+								}
+							</li>
+						}
+					</ul>
+				</li>
+			}
+		</ol>
+	</form>
+</div>

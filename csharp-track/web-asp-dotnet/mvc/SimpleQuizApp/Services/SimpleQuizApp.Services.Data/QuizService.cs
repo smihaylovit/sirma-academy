@@ -2,7 +2,7 @@
 
 namespace SimpleQuizApp.Services.Data
 {
-    public class QuizzesService : IQuizzesService
+    public class QuizService : IQuizService
     {
         private static HashSet<Quiz> Quizzes =
         [
@@ -85,6 +85,12 @@ namespace SimpleQuizApp.Services.Data
         public Quiz? GetById(string id)
         {
             return Quizzes.SingleOrDefault(q => q.Id == id);
+        }
+
+        public void Update(Quiz quiz)
+        {
+            var oldQuiz = Quizzes.SingleOrDefault(q => q.Id == quiz.Id);
+            oldQuiz = quiz;
         }
     }
 }
