@@ -22,18 +22,30 @@ A modern, AI-powered personal finance management application built following the
 - **Storage**: Browser Persistent Storage API
 - **Development**: Claude AI-assisted development
 
+## What's included
+
+- TypeScript + React + Vite setup
+- Components split into:
+  - `components/SmartBudget.tsx`
+  - `components/form/TransactionForm.tsx`
+  - `components/transactions/TransactionsList.tsx`
+  - `components/dashboard/Dashboard.tsx`
+  - `components/insights/Insights.tsx`
+- `hooks/useTransactions.ts` — handles storage (supports `window.storage` or `localStorage` fallback)
+- `utils/budgetCalculations.ts` — totals, category breakdown, monthly series
+- Basic CSS in `src/styles/global.css`
+
 ## 📦 Installation & Setup
 
 ### Prerequisites
 - Node.js (v16 or higher)
 - npm or yarn
 
-### Steps
+### Steps to run locally
 
-1. **Clone the repository**
+1. **Go to the app folder**
 ```bash
-git clone https://github.com/yourusername/smartbudget.git
-cd smartbudget
+cd SmartBudget
 ```
 
 2. **Install dependencies**
@@ -43,11 +55,11 @@ npm install
 
 3. **Start the development server**
 ```bash
-npm start
+npm run dev
 ```
 
 4. **Open your browser**
-Navigate to `http://localhost:3000`
+Navigate to `http://localhost:5173`
 
 ## 📖 Usage Guide
 
@@ -65,25 +77,6 @@ Navigate to `http://localhost:3000`
 ### Managing Transactions
 - **Edit**: Click the edit icon on any transaction
 - **Delete**: Click the delete icon to remove a transaction
-
-## 🏗️ Project Structure
-```
-smartbudget/
-├── src/
-│   ├── components/
-│   │   └── SmartBudget.jsx
-│   ├── App.js
-│   └── index.js
-├── public/
-├── docs/
-│   ├── BMAD_Analysis.md
-│   ├── BMAD_Planning.md
-│   ├── BMAD_Solutioning.md
-│   └── BMAD_Implementation.md
-├── prompts.md
-├── summary.md
-└── README.md
-```
 
 ## 🎯 BMAD Methodology
 
@@ -109,7 +102,7 @@ MIT License - feel free to use this project for learning purposes.
 
 ## 👨‍💻 Author
 
-[Your Name] - AI-First Developer
+[Stoyan Mihaylov] - AI-First Developer
 
 ## 🙏 Acknowledgments
 
