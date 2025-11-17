@@ -228,7 +228,7 @@ const SmartBudget = () => {
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Type</label>
                 <select
@@ -287,20 +287,19 @@ const SmartBudget = () => {
               </div>
               <div className="md:col-span-2 flex gap-4">
                 <button
-                  type="submit"
+                  onClick={handleSubmit}
                   className="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
                 >
                   {editingId ? 'Update Transaction' : 'Add Transaction'}
                 </button>
                 <button
-                  type="button"
                   onClick={cancelEdit}
                   className="px-8 bg-gray-200 text-gray-700 py-3 rounded-lg hover:bg-gray-300 transition-colors font-medium"
                 >
                   Cancel
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         )}
 
